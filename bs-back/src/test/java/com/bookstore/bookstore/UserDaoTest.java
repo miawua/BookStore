@@ -23,6 +23,7 @@ public class UserDaoTest {
         user.setId(1L);
         user.setUsername("u1");
         user.setPassword("p1");
+        user.setAddress("ad1");
         uDao.save(user);
         user = new User();
         user.setId(2L);
@@ -33,6 +34,7 @@ public class UserDaoTest {
         user.setId(3L);
         user.setUsername("u3");
         user.setPassword("p3");
+        user.setAddress("ad3");
         uDao.save(user);
     }
     @Test
@@ -55,8 +57,6 @@ public class UserDaoTest {
     }
     @After
     public void after() {
-        uDao.deleteById(1L);
-        uDao.deleteById(3L);
         uDao.deleteById(5L);
     }
 }

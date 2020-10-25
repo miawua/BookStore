@@ -21,6 +21,8 @@ public class User {
     String username;
     @Column(length = 64)
     String password;
+    @Column(length = 64)
+    String address;
 
     public Long getId() {
         return id;
@@ -44,5 +46,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
