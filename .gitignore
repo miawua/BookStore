@@ -1,0 +1,63 @@
+# front
+bs-front/.DS_Store
+bs-front/node_modules
+bs-front/dist
+
+
+# local env files
+bs-front/.env.local
+bs-front/.env.*.local
+
+# Log files
+bs-front/npm-debug.log*
+bs-front/yarn-debug.log*
+bs-front/yarn-error.log*
+bs-front/pnpm-debug.log*
+
+# Editor directories and files
+bs-front/.idea
+bs-front/.vscode
+bs-front/*.suo
+bs-front/*.ntvs*
+bs-front/*.njsproj
+bs-front/*.sln
+bs-front/*.sw?
+
+# back
+bs-back/HELP.md
+bs-back/target/
+bs-back/doc/
+bs-back/!.mvn/wrapper/maven-wrapper.jar
+bs-back/!**/src/main/**/target/
+bs-back/!**/src/test/**/target/
+
+### STS ###
+bs-back/.apt_generated
+bs-back/.classpath
+bs-back/.factorypath
+bs-back/.project
+bs-back/.settings
+bs-back/.springBeans
+bs-back/.sts4-cache
+
+### IntelliJ IDEA ###
+bs-back/.idea
+bs-back/*.iws
+bs-back/*.iml
+bs-back/*.ipr
+
+### NetBeans ###
+bs-back/nbproject/private/
+bs-back/nbbuild/
+bs-back/dist/
+bs-back/nbdist/
+bs-back/.nb-gradle/
+bs-back/build/
+bs-back/!**/src/main/**/build/
+bs-back/!**/src/test/**/build/
+
+### VS Code ###
+bs-back/.vscode/
+
+### test ###
+bs-back/src/test/java/com/bookstore/bookstore/testSQL.sql
