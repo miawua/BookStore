@@ -20,18 +20,18 @@ public class UserDaoTest {
     @Before
     public void before() {
         User user = new User();
-        user.setId(1L);
+        // user.setId(1L);
         user.setUsername("u1");
         user.setPassword("p1");
         user.setAddress("ad1");
         uDao.save(user);
         user = new User();
-        user.setId(2L);
+        // user.setId(2L);
         user.setUsername("u2");
         user.setPassword("p2");
         uDao.save(user);
         user = new User();
-        user.setId(3L);
+        // user.setId(3L);
         user.setUsername("u3");
         user.setPassword("p3");
         user.setAddress("ad3");
@@ -40,23 +40,23 @@ public class UserDaoTest {
     @Test
     public void testAdd() {
         User user = new User();
-        user.setId(4L);
+        // user.setId(4L);
         user.setUsername("u4");
         user.setPassword("p4");
         uDao.save(user);
         user = new User();
-        user.setId(5L);
+        // user.setId(5L);
         user.setUsername("u5");
         user.setPassword("p5");
         uDao.save(user);
         user = new User();
-        user.setId(7L);
+        // user.setId(7L);
         user.setUsername("u6");
         user.setPassword("p7");
         uDao.save(user);
     }
     @After
     public void after() {
-        uDao.deleteById(5L);
+        uDao.deleteById("u6");
     }
 }

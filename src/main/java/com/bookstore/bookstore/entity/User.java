@@ -5,18 +5,22 @@ import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 
 @Entity
 @Table(name = "user")
 // @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
 
-public class User {
-    @Id
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    Long id;
+    // @Column(name = "id")
+    // Long id;
 
+    @Id
     @Column(length = 32)
     String username;
     @Column(length = 64)
@@ -24,12 +28,25 @@ public class User {
     @Column(length = 64)
     String address;
 
-    public Long getId() {
-        return id;
-    }
+    // public Long getId() {
+    //     return id;
+    // }
 
-    public void setId(Long id) {
-        this.id = id;
+    // public void setId(Long id) {
+    //     this.id = id;
+    // }
+    
+    public User(){
+        setUsername("");
+    }
+    public User(String username, String password){
+        setUsername(username);
+        setPassword(password);
+    }
+    public User(String username, String password, String address){
+        setUsername(username);
+        setPassword(password);
+        setAddress(address);
     }
 
     public String getUsername() {

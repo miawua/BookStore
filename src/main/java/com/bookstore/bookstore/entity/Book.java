@@ -44,6 +44,8 @@ public class Book implements Serializable {
     Date releasetime;
     // https://sm.ms/image/3GRZheF49UrqjmY][img]https://i.loli.net/2020/10/23/3GRZheF49UrqjmY.png
     String picturelink;
+    @Column(columnDefinition="text")
+    String text;
 
     public void setBook(String ISBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
             Date shelftime, Date releasetime, String picturelink) {
@@ -56,6 +58,20 @@ public class Book implements Serializable {
         setShelfTime(shelftime);
         setReleaseTime(releasetime);
         setPictureLink(picturelink);
+    }
+
+    public void setBook(String ISBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
+            Date shelftime, Date releasetime, String picturelink, String text) {
+        setISBN(ISBN);
+        setBookName(bookname);
+        setBookAuthor(bookauthor);
+        setPrice(price);
+        setSoldNum(soldnum);
+        setRemainNum(remainnum);
+        setShelfTime(shelftime);
+        setReleaseTime(releasetime);
+        setPictureLink(picturelink);
+        setText(text);
     }
 
     public String getISBN() {
@@ -128,5 +144,13 @@ public class Book implements Serializable {
 
     public void setPictureLink(String picturelink) {
         this.picturelink = picturelink;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @EntityScan(basePackages = {"com.bookstore.bookstore.entity"})
-public interface BookDAO extends JpaRepository<Book, Long> {
+public interface BookDAO extends JpaRepository<Book, String> {
     @Modifying
     @Transactional
     @Query(value = "delete from book b where b.ISBN = ?1", nativeQuery = true)
