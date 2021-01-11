@@ -22,6 +22,10 @@ public class UserController {
     @RequestMapping(value = "/", produces = "application/json;charset=UTF-8")
     public int opt(@RequestBody UserJSON op){
         if(op == null) return 0;
+        if(op.getUsers() == null){
+            System.out.println("null");
+            return 0;
+        }
         List<User> user = op.getUsers();
         int length = user.size();
         if(length < 1) return 0;

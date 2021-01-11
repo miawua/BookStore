@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 // import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Table(name = "book")
@@ -20,7 +21,7 @@ public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "ISBN", length = 255)
+    @Column(name = "isbn", length = 255)
     String ISBN;
 
     @Column(length = 64)
@@ -29,6 +30,7 @@ public class Book implements Serializable {
     @Column(length = 64)
     String bookauthor;
 
+    @NumberFormat(pattern = ".##")
     float price;
     int soldnum;
     int remainnum;
@@ -36,6 +38,7 @@ public class Book implements Serializable {
     // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone
     // = "GMT+8")
     @CreatedDate
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(columnDefinition = "date")
     private Date shelftime;
 
@@ -43,52 +46,11 @@ public class Book implements Serializable {
     @Column(columnDefinition = "date")
     Date releasetime;
     // https://sm.ms/image/3GRZheF49UrqjmY][img]https://i.loli.net/2020/10/23/3GRZheF49UrqjmY.png
+    
+    @Column(name = "picturelink", length = 255)
     String picturelink;
     @Column(columnDefinition="text")
     String text;
-
-    public Book(){
-        setISBN("???");
-        setBookName("???");
-        setBookAuthor("???");
-    }
-
-    public Book(String ISBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
-            Date shelftime, Date releasetime, String picturelink) {
-        setBook(ISBN, bookname, bookauthor, price, soldnum, remainnum, shelftime, releasetime, picturelink);
-    }
-
-    public Book(String ISBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
-            Date shelftime, Date releasetime, String picturelink, String text) {
-        setBook(ISBN, bookname, bookauthor, price, soldnum, remainnum, shelftime, releasetime, picturelink, text);
-    }
-
-    public void setBook(String ISBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
-            Date shelftime, Date releasetime, String picturelink) {
-        setISBN(ISBN);
-        setBookName(bookname);
-        setBookAuthor(bookauthor);
-        setPrice(price);
-        setSoldNum(soldnum);
-        setRemainNum(remainnum);
-        setShelfTime(shelftime);
-        setReleaseTime(releasetime);
-        setPictureLink(picturelink);
-    }
-
-    public void setBook(String ISBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
-            Date shelftime, Date releasetime, String picturelink, String text) {
-        setISBN(ISBN);
-        setBookName(bookname);
-        setBookAuthor(bookauthor);
-        setPrice(price);
-        setSoldNum(soldnum);
-        setRemainNum(remainnum);
-        setShelfTime(shelftime);
-        setReleaseTime(releasetime);
-        setPictureLink(picturelink);
-        setText(text);
-    }
 
     public String getISBN() {
         return ISBN;
@@ -168,5 +130,56 @@ public class Book implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Book(String iSBN) {
+        ISBN = iSBN;
+    }
+
+    public Book(String iSBN, String bookname, String bookauthor) {
+        ISBN = iSBN;
+        this.bookname = bookname;
+        this.bookauthor = bookauthor;
+    }
+
+    public Book(String iSBN, int remainnum) {
+        ISBN = iSBN;
+        this.remainnum = remainnum;
+    }
+
+    public Book(String iSBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
+            Date releasetime, String picturelink, String text) {
+        ISBN = iSBN;
+        this.bookname = bookname;
+        this.bookauthor = bookauthor;
+        this.price = price;
+        this.soldnum = soldnum;
+        this.remainnum = remainnum;
+        this.releasetime = releasetime;
+        this.picturelink = picturelink;
+        this.text = text;
+    }
+
+    public Book(String iSBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
+            Date shelftime, Date releasetime, String picturelink, String text) {
+        ISBN = iSBN;
+        this.bookname = bookname;
+        this.bookauthor = bookauthor;
+        this.price = price;
+        this.soldnum = soldnum;
+        this.remainnum = remainnum;
+        this.shelftime = shelftime;
+        this.releasetime = releasetime;
+        this.picturelink = picturelink;
+        this.text = text;
+    }
+
+    public Book(String iSBN, int soldnum, int remainnum) {
+        ISBN = iSBN;
+        this.soldnum = soldnum;
+        this.remainnum = remainnum;
+    }
+
+    public Book(){
     }
 }

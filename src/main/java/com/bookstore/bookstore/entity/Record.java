@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
-@Table(name = "records")
-public class Records implements Serializable{
+@Table(name = "record")
+public class Record implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @Id

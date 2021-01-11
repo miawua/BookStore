@@ -29,15 +29,15 @@ public interface UserDAO extends JpaRepository<User, String>{
     @Modifying
     void updateAddress(String newAddress, String name);
     
-    @Query(value = "update user set username = ?1 and password = ?2 where username = ?3", nativeQuery = true)
+    @Query(value = "update user set username = ?1, password = ?2 where username = ?3", nativeQuery = true)
     @Modifying
     void updateNamePass(String newName, String newPass, String name);
     
-    @Query(value = "update user set password = ?1 and address = ?2 where username = ?3", nativeQuery = true)
+    @Query(value = "update user set password = ?1, address = ?2 where username = ?3", nativeQuery = true)
     @Modifying
     void updatePassAddr(String newPass, String newAddr, String name);
     
-    @Query(value = "update user set username = ?1 and password = ?2 and address = ?3 where username = ?4", nativeQuery = true)
+    @Query(value = "update user set username = ?1, password = ?2, address = ?3 where username = ?4", nativeQuery = true)
     @Modifying
     void updateUser(String newName, String newPass, String newAddr, String name);
 }
