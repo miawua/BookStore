@@ -47,6 +47,22 @@ public class Book implements Serializable {
     @Column(columnDefinition="text")
     String text;
 
+    public Book(){
+        setISBN("???");
+        setBookName("???");
+        setBookAuthor("???");
+    }
+
+    public Book(String ISBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
+            Date shelftime, Date releasetime, String picturelink) {
+        setBook(ISBN, bookname, bookauthor, price, soldnum, remainnum, shelftime, releasetime, picturelink);
+    }
+
+    public Book(String ISBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
+            Date shelftime, Date releasetime, String picturelink, String text) {
+        setBook(ISBN, bookname, bookauthor, price, soldnum, remainnum, shelftime, releasetime, picturelink, text);
+    }
+
     public void setBook(String ISBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
             Date shelftime, Date releasetime, String picturelink) {
         setISBN(ISBN);

@@ -17,7 +17,7 @@ public class BookController {
     @Autowired
     private BookDAO bDao;
 
-    @RequestMapping("book")
+    @RequestMapping("/book")
     public boolean add(Book book){
         bDao.save(book);
         return true;
