@@ -5,14 +5,18 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
+// import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "record")
+@EntityListeners(AuditingEntityListener.class)
 public class Record implements Serializable{
     private static final long serialVersionUID = 1L;
     
@@ -22,12 +26,21 @@ public class Record implements Serializable{
     Long id;
     @Column(length = 32)
     String buyername; // mapping to username
-    @CreatedDate
+    
+    @CreationTimestamp
     @Column(columnDefinition = "date")
     Date purchasedate;
+    
     float payfor;
     @Column(length = 255)
     String ISBN;
+
+    public Record(){}
+    public Record(String username, float payfor, String ISBN){
+        this.buyername = username;
+        this.payfor = payfor;
+        this.ISBN = ISBN;
+    }
 
     public Long getId() {
         return id;

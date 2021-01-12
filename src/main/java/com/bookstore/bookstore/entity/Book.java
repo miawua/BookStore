@@ -11,7 +11,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 // import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
+// import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.NumberFormat;
 
 @Entity
@@ -37,7 +38,7 @@ public class Book implements Serializable {
 
     // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone
     // = "GMT+8")
-    @CreatedDate
+    @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(columnDefinition = "date")
     private Date shelftime;
@@ -51,6 +52,57 @@ public class Book implements Serializable {
     String picturelink;
     @Column(columnDefinition="text")
     String text;
+
+    public Book(String iSBN) {
+        ISBN = iSBN;
+    }
+
+    public Book(String iSBN, String bookname, String bookauthor) {
+        ISBN = iSBN;
+        this.bookname = bookname;
+        this.bookauthor = bookauthor;
+    }
+
+    public Book(String iSBN, int remainnum) {
+        ISBN = iSBN;
+        this.remainnum = remainnum;
+    }
+
+    public Book(String iSBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
+            Date releasetime, String picturelink, String text) {
+        ISBN = iSBN;
+        this.bookname = bookname;
+        this.bookauthor = bookauthor;
+        this.price = price;
+        this.soldnum = soldnum;
+        this.remainnum = remainnum;
+        this.releasetime = releasetime;
+        this.picturelink = picturelink;
+        this.text = text;
+    }
+
+    public Book(String iSBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
+            Date shelftime, Date releasetime, String picturelink, String text) {
+        ISBN = iSBN;
+        this.bookname = bookname;
+        this.bookauthor = bookauthor;
+        this.price = price;
+        this.soldnum = soldnum;
+        this.remainnum = remainnum;
+        this.shelftime = shelftime;
+        this.releasetime = releasetime;
+        this.picturelink = picturelink;
+        this.text = text;
+    }
+
+    public Book(String iSBN, int soldnum, int remainnum) {
+        ISBN = iSBN;
+        this.soldnum = soldnum;
+        this.remainnum = remainnum;
+    }
+
+    public Book(){
+    }
 
     public String getISBN() {
         return ISBN;
@@ -130,56 +182,5 @@ public class Book implements Serializable {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public Book(String iSBN) {
-        ISBN = iSBN;
-    }
-
-    public Book(String iSBN, String bookname, String bookauthor) {
-        ISBN = iSBN;
-        this.bookname = bookname;
-        this.bookauthor = bookauthor;
-    }
-
-    public Book(String iSBN, int remainnum) {
-        ISBN = iSBN;
-        this.remainnum = remainnum;
-    }
-
-    public Book(String iSBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
-            Date releasetime, String picturelink, String text) {
-        ISBN = iSBN;
-        this.bookname = bookname;
-        this.bookauthor = bookauthor;
-        this.price = price;
-        this.soldnum = soldnum;
-        this.remainnum = remainnum;
-        this.releasetime = releasetime;
-        this.picturelink = picturelink;
-        this.text = text;
-    }
-
-    public Book(String iSBN, String bookname, String bookauthor, float price, int soldnum, int remainnum,
-            Date shelftime, Date releasetime, String picturelink, String text) {
-        ISBN = iSBN;
-        this.bookname = bookname;
-        this.bookauthor = bookauthor;
-        this.price = price;
-        this.soldnum = soldnum;
-        this.remainnum = remainnum;
-        this.shelftime = shelftime;
-        this.releasetime = releasetime;
-        this.picturelink = picturelink;
-        this.text = text;
-    }
-
-    public Book(String iSBN, int soldnum, int remainnum) {
-        ISBN = iSBN;
-        this.soldnum = soldnum;
-        this.remainnum = remainnum;
-    }
-
-    public Book(){
     }
 }

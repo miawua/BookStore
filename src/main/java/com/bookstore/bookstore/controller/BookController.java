@@ -24,7 +24,7 @@ public class BookController {
     @Autowired
     private BookService bService;
 
-    @RequestMapping(value = "/book",  produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/book", produces = "application/json;charset=UTF-8")
     public Object opt(@RequestBody Map<String, Object> oMap){
         BookJSON op = new BookJSON();
         if(oMap.get("opType") == null) return 0;

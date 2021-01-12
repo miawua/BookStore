@@ -26,4 +26,8 @@ public interface RecordDAO extends JpaRepository<Record, Long> {
 
     @Query(value = "select * from record where isbn = ?1", nativeQuery = true)
     List<Record> findBookRecords(String ISBN);
+
+    @Query(value = "update record set username = ?1 where username = ?2", nativeQuery = true)
+    @Modifying
+    void updateByUsername(String newName, String oldName);
 }

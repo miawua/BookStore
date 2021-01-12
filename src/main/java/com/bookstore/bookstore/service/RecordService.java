@@ -12,6 +12,7 @@ import com.bookstore.bookstore.entity.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RecordService {
@@ -21,17 +22,32 @@ public class RecordService {
     private UserDAO uDao;
     @Autowired
     private BookDAO bDao;
+    @Autowired
+    private BookService bService;
+
+    public int addRecord(String username, String ISBN){
+        if(username == null || ISBN == null) return 0;
+        Optional<User> u = uDao.findById(username);
+        if(u.isEmpty()) return -1;
+        Optional<Book> b = bDao.findById(ISBN);
+        if(b.isEmpty()) return -1;
+        return addRecord(new Record(username, b.get().getPrice(), ISBN));
+    }
 
     public int addRecord(Record record){
         if(record == null) return 0;
-        Optional<User> u = uDao.findById(record.getBuyername());
-        if(u.isEmpty()) return -1;
-        Optional<Book> b = bDao.findById(record.getISBN());
-        if(b.isEmpty()) return -1;
+        if(record.getBuyername() == null) return -1;
+        User buyer = uDao.findByName(record.getBuyername());
+        if(buyer == null) return -1;
+        if(record.getISBN() == null) return -1;
+        Optional<Book> book = bDao.findById(record.getISBN());
+        if(book.isEmpty()) return -1;
+        bService.sell(book.get());
         rDao.save(record);
         return 1;
     }
 
+    @Transactional
     public int deleteUserRecord(String username){
         Optional<User> u = uDao.findById(username);
         if(u.isEmpty()) return -1;
@@ -45,6 +61,7 @@ public class RecordService {
         return rDao.findUserRecords(username);
     }
 
+    @Transactional
     public int deleteBookRecord(String ISBN){
         Optional<Book> b = bDao.findById(ISBN);
         if(b.isEmpty()) return -1;

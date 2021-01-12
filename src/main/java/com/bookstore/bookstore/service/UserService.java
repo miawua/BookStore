@@ -2,6 +2,7 @@ package com.bookstore.bookstore.service;
 
 import javax.transaction.Transactional;
 
+import com.bookstore.bookstore.dao.RecordDAO;
 import com.bookstore.bookstore.dao.UserDAO;
 import com.bookstore.bookstore.entity.User;
 
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private UserDAO uDao;
+    @Autowired
+    private RecordDAO rDao;
 
     static int key = 0;
 
@@ -54,7 +57,10 @@ public class UserService {
         if(o != null) return -2; // new name already exists
         o = uDao.findByName(oldUser.getUsername());
         if(o == null) return -1; // user not exists
+        String newName = newUser.getUsername();
+        String oldName = oldUser.getUsername();
         uDao.updateUser(newUser.getUsername(), newUser.getPassword(), newUser.getAddress(), o.getUsername());
+        rDao.updateByUsername(newName, oldName);
         return 1;
     }
 
@@ -72,7 +78,9 @@ public class UserService {
         if(user == null) return 0;
         User u = uDao.findByName(user.getUsername());
         if(u == null) return -1; // user not exists
+        String oldName = u.getUsername();
         uDao.updateName(newName, u.getUsername());
+        rDao.updateByUsername(newName, oldName);
         return 1;
     }
 
@@ -91,6 +99,26 @@ public class UserService {
         User u = uDao.findByName(user.getUsername());
         if(u == null) return -1; // user not exists
         uDao.updateAddress(newAddr, u.getUsername());
+        return 1;
+    }
+
+    @Transactional
+    public int delete(User user){
+        if(user == null) return 0;
+        User u = uDao.findByName(user.getUsername());
+        if(u == null) return -1;
+        uDao.deleteById(user.getUsername());
+        rDao.deleteUserRecord(user.getUsername());
+        return 1;
+    }
+
+    @Transactional
+    public int deleteByName(String username){
+        if(username == null) return 0;
+        User u = uDao.findByName(username);
+        if(u == null) return -1;
+        uDao.deleteById(username);
+        rDao.deleteUserRecord(username);
         return 1;
     }
 }
