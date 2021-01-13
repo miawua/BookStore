@@ -7,7 +7,7 @@ This is the back end project.
 
 # 数据库设计
 
-![image-20210113141744197](\1.assets\image-20210113141744197.png)
+![image-20210113141744197](https://github.com/miawua/BookStore-back/1.assets/image-20210113141744197.png?raw=true)
 
 
 
