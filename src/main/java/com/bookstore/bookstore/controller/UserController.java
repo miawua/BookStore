@@ -42,6 +42,7 @@ public class UserController {
                 if(length < 2) return 0;
                 return uService.update(user.get(0), user.get(1));
             case  6: return uService.updateNoName(user.get(0));
+            case  7: return uService.register(user);
         }
         return 0;
     }

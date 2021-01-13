@@ -24,10 +24,22 @@ public class BookService {
     @Autowired
     private BookDAO bDao;
 
+    @Transactional
     public int addBook(Book book){
         if(book == null) return 0;
         bDao.save(book);
         return 1;
+    }
+
+    @Transactional
+    public int addBooks(List<Book> books){
+        if(books == null) return 0;
+        int n = 0;
+        for(Book b: books){
+            if(addBook(b) == 1)
+                n++;
+        }
+        return n;
     }
 
     public Book queryByISBN(String ISBN){

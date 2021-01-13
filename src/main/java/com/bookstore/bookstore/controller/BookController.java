@@ -27,6 +27,7 @@ public class BookController {
     @RequestMapping(value = "/book", produces = "application/json;charset=UTF-8")
     public Object opt(@RequestBody Map<String, Object> oMap){
         BookJSON op = new BookJSON();
+        List<Book> books = null;
         if(oMap.get("opType") == null) return 0;
         op.setOpType((int)oMap.get("opType"));
         if(oMap.get("queryFrom") != null)
@@ -39,8 +40,8 @@ public class BookController {
             op.setAsc((boolean)oMap.get("isAsc"));
         if(oMap.get("book") != null){
             String rvs = JSONArray.toJSONString(oMap.get("book"));
-            List<Book> b= JSON.parseArray(rvs, Book.class);
-            op.setBook(b.get(0));
+            books = JSON.parseArray(rvs, Book.class);
+            op.setBook(books.get(0));
         }
         switch(op.getOpType()){
             case -1: return 0;
@@ -58,6 +59,7 @@ public class BookController {
             case  5: return bService.queryBooks(op.getQueryFrom(), op.getQueryNum());
             case  6: return bService.queryByOrder(op.getQueryFrom(), op.getQueryNum(), op.getOrder(), op.isAsc());
             case  7: return bService.likeQuery(op.getBook());
+            case  8: return bService.addBooks(books);
         }
         return 1;
     }

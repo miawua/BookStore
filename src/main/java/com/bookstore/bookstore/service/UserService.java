@@ -1,5 +1,7 @@
 package com.bookstore.bookstore.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import com.bookstore.bookstore.dao.RecordDAO;
@@ -33,6 +35,7 @@ public class UserService {
         return 1;
     }
 
+    @Transactional
     public int register(User user){
         if(user == null) return 0;
         User find = uDao.findByName(user.getUsername());
@@ -45,6 +48,17 @@ public class UserService {
         }
         uDao.save(user);
         return 1;
+    }
+
+    @Transactional
+    public int register(List<User> users){
+        if(users == null) return 0;
+        int n = 0;
+        for(User u: users){
+            if(register(u) == 1)
+                n++;
+        }
+        return n;
     }
 
     @Transactional
