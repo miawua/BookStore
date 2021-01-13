@@ -7,15 +7,15 @@ This is the back end project.
 
 # 数据库设计
 
-![image-20210113141744197](https://github.com/miawua/BookStore-back/1.assets/image-20210113141744197.png?raw=true)
+![book](https://github.com/miawua/BookStore-back/blob/main/1.assets/image-20210113141744197.png)
 
 
 
-![image-20210113142336686](\1.assets\image-20210113142336686.png)
+![user](https://github.com/miawua/BookStore-back/blob/main/1.assets/image-20210113142336686.png)
 
 
 
-![image-20210113142422811](\1.assets\image-20210113142422811.png)
+![record](https://github.com/miawua/BookStore-back/blob/main/1.assets/image-20210113142422811.png)
 
 # 框架目录
 
