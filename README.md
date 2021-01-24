@@ -3,19 +3,13 @@ A small project for practicing Vue + Spring boot.
 
 This is the back end project.
 
-该项目使用 Spring Boot 框架，目的在于熟悉使用 Spring Boot 及其相关技术，适用于第一次接触 Spring Boot 框架的纯小白练手，包括我。
+该项目使用 Spring Boot 框架，目的在于熟悉使用 Spring Boot 及其相关技术，适用于第一次接触 Spring Boot 框架的纯小白练手。
 
-# 数据库设计
+`jpa` 也只是使用了最简单的功能。
 
-![book](https://github.com/miawua/BookStore-back/blob/main/1.assets/image-20210113141744197.png)
+水平有限，不够优雅，难免有错误，欢迎指正。
 
-
-
-![user](https://github.com/miawua/BookStore-back/blob/main/1.assets/image-20210113142336686.png)
-
-
-
-![record](https://github.com/miawua/BookStore-back/blob/main/1.assets/image-20210113142422811.png)
+前端由另一位同学实现，单纯后端测试可以使用浏览器插件或者 Postman 软件模拟发送请求。
 
 # 框架目录
 
